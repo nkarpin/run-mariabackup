@@ -23,12 +23,17 @@ Note: have tested on Ubuntu 18.04 with MariaDB 10.3
 
 ## Usage
 
-    MYSQL_PASSWORD=YourPassword bash run-mariabackup.sh
+    create /etc/mysql/admin_user.cnf with next content:
+    [client]
+    user = <backup user name>
+    password = <backup user password>
+    port = 3306
+
 
 ## Crontab
 
     #MySQL Backup
-    30 2 * * * MYSQL_PASSWORD=YourPassword bash /data/script/run-mariabackup.sh > /data/script/logs/run-mariabackup.sh.out 2>&1
+    30 2 * * * MARIADB_HOST=<ip of mariadb host to backup> bash /data/script/run-mariabackup.sh > /data/script/logs/run-mariabackup.sh.out 2>&1
 
 ---
 
